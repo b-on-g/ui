@@ -1,0 +1,45 @@
+name: $bog_ui
+
+permissions: write-all
+
+on:
+  workflow_dispatch:
+  push:
+  pull_request:
+  schedule:
+  - cron: "0 7 * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - uses: hyoo-ru/mam_build@master2
+      with:
+        package: 'bog/ui'
+        modules: 'app'
+        # $bog_tooltip живёт отдельным репозиторием — без этого MAM его не найдёт.
+        meta: |
+          bog/tooltip https://github.com/b-on-g/tooltip.git
+
+    - uses: b-on-g/mol-prerender-action@main
+      with:
+        folder: 'bog/ui/app/-'
+        base-url: 'https://b-on-g.github.io/ui/'
+        route-key: 'component'
+        screens: |
+          badge
+          empty
+          skeleton
+          breadcrumb
+          sidebar
+          sheet
+          toast
+          command
+          table
+
+    - uses: hyoo-ru/gh-deploy@v4.4.1
+      if: github.ref == 'refs/heads/main'
+      with:
+        folder: 'bog/ui/app/-'
