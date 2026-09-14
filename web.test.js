@@ -2819,6 +2819,21 @@ var $;
 ;
 "use strict";
 var $;
+(function ($) {
+    $mol_test({
+        'room is counted from the host center to both edges of the view'() {
+            $mol_assert_like($bog_tooltip_room({ left: 12, width: 40 }, 1280), { left: 32, right: 1248 });
+            $mol_assert_like($bog_tooltip_room({ left: 1228, width: 40 }, 1280), { left: 1248, right: 32 });
+        },
+        'host past the right edge leaves negative room on that side'() {
+            $mol_assert_like($bog_tooltip_room({ left: 1270, width: 40 }, 1280), { left: 1290, right: -10 });
+        },
+    });
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
 (function ($_1) {
     var $$;
     (function ($$) {

@@ -157,6 +157,7 @@
     "$mol_file_transaction",
     "$bog_ui_tooltip",
     "$bog_tooltip",
+    "$bog_tooltip_room",
     "$mol_icon_view_grid",
     "$mol_icon_view",
     "$mol_icon",
