@@ -199,6 +199,7 @@
     "$bog_ui_command",
     "$mol_string",
     "$mol_hotkey",
+    "$mol_hotkey2",
     "$bog_ui_app_badge",
     "$bog_ui_badge",
     "$bog_ui_app_empty",
